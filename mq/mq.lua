@@ -27,7 +27,7 @@ function mq.delay(delayValue, condition) end
 function mq.gettime() end
 
 ---Joins a number of string-convertable parameters into a single string
----@vararg string
+---@vararg number|string
 ---@return string
 function mq.join(...) end
 
@@ -63,7 +63,7 @@ function mq.doevents(name) end
 function mq.flushevents(name) end
 
 ---@param name string # The name of the texture to find
----@return textureanimation # The CTextureAnimation with the given name
+---@return CTextureAnimation # The CTextureAnimation with the given name
 function mq.FindTextureAnimation(name) end
 
 ---Returns all spawns
@@ -79,14 +79,9 @@ function mq.getFilteredSpawns(predicate) end
 ---@return mqtype
 function mq.gettype(type) end
 
----@param name string The name of the texture animation
----@return any
-function mq.FindTextureAnimation(name) end
-
 ---Retrieves FLT_MIN and FLT_MAX
 ---@return number FLT_MIN, number FLT_MAX
 function mq.NumericLimits_Float() end
-
 
 ---Serializes a table to the given filepath
 ---@param filepath string
@@ -167,9 +162,19 @@ function mq.imgui.destroy(name) end
 ---@field MacroQuest macroquest
 ---@field Math math
 ---@field Me MQCharacter
+---@field meleemvb integer # Returns the int value of the requested melee configuration boolean option
+---@field meleemvcd string # Returns the eval of the requested melee integer configuration option
+---@field meleemvcde string # Returns the literal value of the requested melee integer configuration option
+---@field meleemvcs string # Returns the eval of the requested melee string configuration option
+---@field meleemvcse string # Returns the literal value of the requested melee string configuration option
+---@field meleemvi integer # Returns the eval of the requested melee integer configuration option
+---@field meleemvid integer # Returns the literal value of the requested integer melee configuration option
+---@field meleemvs string # Returns the eval of the requested melee string configuration option
+---@field meleemvse string # Returns the literal value of the requested string melee configuration option
 ---@field Menu any
 ---@field Mercenary mercenary
 ---@field Merchant MQMerchant # Interacts with the currently active merchant
+---@field MMOIni fun(FileName:string, Section:string, Key:string, Default:string):string # Read an INI file entry
 ---@field Mount keyring
 ---@field Pet pet
 ---@field PointMerchant any
@@ -197,6 +202,7 @@ function TLO.Alert() end
 ---@param id integer
 ---@return alert
 function TLO.Alert(id) end
+
 ---@diagnostic enable: duplicate-set-field
 
 ---@deprecated Use Lua types
@@ -206,47 +212,47 @@ function TLO.Bool() end
 ---@param filter string
 ---@return MQSpawn
 ---@overload fun(filter: string): MQSpawn
-function TLO.NearestSpawn(index, filter)end
+function TLO.NearestSpawn(index, filter) end
 
 ---Finds an Item by the item ID
 ---@param id integer
 ---@return MQItem
-function TLO.FindItem(id)end
+function TLO.FindItem(id) end
 
 ---Finds an Item by the partial item Name (use of '=' infront of name forces exact match)
 ---@param name string
 ---@return MQItem
-function TLO.FindItem(name)end
+function TLO.FindItem(name) end
 
 ---Finds an Item in the bank by the item ID
 ---@param id integer
 ---@return MQItem
-function TLO.FindItemBank(id)end
+function TLO.FindItemBank(id) end
 
 ---Finds an Item in the bank by the partial item Name (use of '=' infront of name forces exact match)
 ---@param name string
 ---@return MQItem
-function TLO.FindItemBank(name)end
+function TLO.FindItemBank(name) end
 
 ---Return a counts of Items by the item ID
 ---@param id integer
 ---@return MQInt
-function TLO.FindItemCount(id)end
+function TLO.FindItemCount(id) end
 
 ---Return a counts of Items by the item Name
 ---@param name string
 ---@return MQInt
-function TLO.FindItemCount(name)end
+function TLO.FindItemCount(name) end
 
 ---Return a counts of Items in the bank by the item ID
 ---@param id integer
 ---@return MQInt
-function TLO.FindItemBankCount(id)end
+function TLO.FindItemBankCount(id) end
 
 ---Return a counts of Items in the bank by the item Name
 ---@param name string
 ---@return MQInt
-function TLO.FindItemBankCount(name)end
+function TLO.FindItemBankCount(name) end
 
 ---@diagnostic disable: duplicate-set-field
 ----Creates a heading object using degrees (clockwise)
@@ -265,32 +271,33 @@ function TLO.Heading(y, x) end
 ---@param west integer # West location
 ---@return heading
 function TLO.Heading(north, west) end
+
 ---@diagnostic enable: duplicate-set-field
 
 ---Returns a Plugin by index, starting with 1 and stopping whenever the list runs out of plugins.
 ---@param index integer
 ---@return plugin
-function TLO.Plugin(index)end
+function TLO.Plugin(index) end
 
 ----Returns a Plugin by Name
 ---@param name string
 ---@return plugin
-function TLO.Plugin(name)end
+function TLO.Plugin(name) end
 
 ---Returns a Spawn by ID
 ---@param id integer
 ---@return MQSpawn
-function TLO.Spawn(id)end
+function TLO.Spawn(id) end
 
 ---Returns a Spawn by use of a [Spawn Search](https://docs.macroquest.org/reference/general/spawn-search/) filter
 ---@param filter string
 ---@return MQSpawn
-function TLO.Spawn(filter)end
+function TLO.Spawn(filter) end
 
 ---Number of items on the ground in this zone (filter is optional)
 ---@param filter string
 ---@return integer
-function TLO.GroundItemCount(filter)end
+function TLO.GroundItemCount(filter) end
 
 ---Retrieves the item in your mount keyring by index
 ---@param index integer
@@ -305,36 +312,36 @@ function TLO.Mount(name) end
 ----Returns a count of Spawns by use of a [Spawn Search](https://docs.macroquest.org/reference/general/spawn-search/) filter
 ---@param filter string
 ---@return MQInt
-function TLO.SpawnCount(filter)end
+function TLO.SpawnCount(filter) end
 
 ---Returns a Spell by ID
 ---@param id integer
 ---@return MQSpell
-function TLO.Spell(id)end
+function TLO.Spell(id) end
 
 ----Returns a Spell by Name
 ---@param name string
 ---@return MQSpell
-function TLO.Spell(name)end
+function TLO.Spell(name) end
 
 ---Returns a Skill by number
 ---@param number integer
 ---@return skill
-function TLO.Skill(number)end
+function TLO.Skill(number) end
 
 ----Returns a Skill by Name
 ---@param name string
 ---@return skill
-function TLO.Skill(name)end
+function TLO.Skill(name) end
 
 ----The current zone information
----@type zone
+---@type MQCurrentZone
 TLO.Zone = nil
 
 ---@diagnostic disable: duplicate-set-field
 ---@diagnostic disable: assign-type-mismatch
 ----Retrieves information about the current zone.
----@return MQZone
+---@return MQCurrentZone
 function TLO.Zone() end
 
 ---@diagnostic disable: duplicate-set-field
@@ -348,7 +355,22 @@ function TLO.Zone(id) end
 ---@param shortName string Zone Short Name
 ---@return MQZone
 function TLO.Zone(shortName) end
+
 ---@diagnostic enable: assign-type-mismatch
 ---@diagnostic enable: duplicate-set-field
+
+---@class MQTexture
+---@field public size ImVec2 Size of the texture
+---@field public fileName string filename of the texture
+local MQTexture = {}
+
+---Retrieve the texture id for the texture
+---@return ImTextureID
+function MQTexture:GetTextureID() end
+
+---Create a texture from an image file
+---@param fileName string Texture filename
+---@return MQTexture
+function mq.CreateTexture(fileName) end
 
 return mq

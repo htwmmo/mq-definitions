@@ -12,4 +12,11 @@
 --- @field public SkyType number Sky type
 --- @field public Type number Zone type:0=Indoor Dungeon 1=Outdoor 2=Outdoor City 3=Dungeon City 4=Indoor City 5=Outdoor Dungeon
 --- @field public FOgOnOff number off
+--- @field public ZoneFlags number # Zone flags
+--- @field public SafeY MQFloat # Safe Y coordinate
+--- @field public SafeX MQFloat # Safe X coordinate
+--- @field public SafeZ MQFloat # Safe Z coordinate
+--- @field public SafeN MQFloat # Safe Y coordinate
+--- @field public SafeW MQFloat # Safe X coordinate
+--- @field public SafeU MQFloat # Safe Z coordinate
 --- @field public ToString string Same as Name

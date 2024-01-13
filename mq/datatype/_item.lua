@@ -17,6 +17,7 @@
 ---@field public AugType MQFloat #Augment Type
 ---@field public Avoidance MQFloat #Avoidance
 ---@field public BuyPrice MQFloat #The cost to buy this item from active merchant
+---@field public Blessing string  #Name of the blessing this item gives
 ---@field public CastTime MQFloat Spell effect's cast time (in seconds)
 ---@field public CHA MQFloat #CHA value on item
 ---@field public Charges MQFloat #Charges
@@ -78,6 +79,7 @@
 ---@field public Name MQString #Name
 ---@field public NoDrop MQBoolean #No Trade?
 ---@field public NoRent MQBoolean #Temporary?
+---@field public Open MQBoolean #If a container, is it open?
 ---@field public Power MQFloat #Power left on power source
 ---@field public Purity MQFloat #Purity of item
 ---@field public Race fun(filter: number|string): MQString #Returns the #th long race name of the listed races on an item. Items suitable for ALL races will effectively have all 15 races listed.
@@ -114,7 +116,7 @@
 ---@field public Weight MQFloat #Item weight
 ---@field public WIS MQFloat #WIS value on item
 ---@filed public Worn itemspell|fun():itemspell Passive worn effect, if any
----@field public WornSlot fun(slot: number): invslot invslot The #th invslot this item can be worn in (fingers/ears count as 2 slots)
+---@field public WornSlot fun(slot: number|string): invslot invslot The #th invslot this item can be worn in (fingers/ears count as 2 slots)
 ---@field public WornSlot fun(slot: string): MQBoolean #Can item be worn in invslot with this name? (worn slots only)
 ---@field public WornSlots MQFloat #The number of invslots this item can be worn in (fingers/ears count as 2 slots)
 ---@field public ToString MQString #Same as Name
